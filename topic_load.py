@@ -1,21 +1,9 @@
-__author__ = 'Danny'
-import logging
-import os
 import gensim
+import logging
 
-TEXTS_DIR = "text"
-MODELS_DIR = "."
+NUM_TOPICS = 15
 
-# extract topics
-NUM_TOPICS = 10
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
-                    level=logging.INFO)
-
-dictionary = gensim.corpora.Dictionary.load(os.path.join(MODELS_DIR,
-                                                         "mtsamples.dict"))
-corpus = gensim.corpora.MmCorpus(os.path.join(MODELS_DIR, "mtsamples.mm"))
-
-# Project to LDA space
-lda = gensim.models.LdaModel(corpus, id2word=dictionary, num_topics=NUM_TOPICS)
-lda.print_topics(NUM_TOPICS, num_words=150)
+lda = gensim.models.LdaModel.load('mh370')
+lda.print_topics(NUM_TOPICS, num_words=500)

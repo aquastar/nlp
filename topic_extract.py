@@ -25,16 +25,22 @@ class MyCorpus(object):
         for tokens in iter_docs(self.topdir, self.stoplist):
             yield self.dictionary.doc2bow(tokens)
 
-# build pre-processed data
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
-                    level=logging.INFO)
 
+NUM_TOPICS = 10
 TEXTS_DIR = "text"
 MODELS_DIR = "."
 
 stoplist = set(nltk.corpus.stopwords.words("english"))
 corpus = MyCorpus(TEXTS_DIR, stoplist)
 
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
+                    level=logging.INFO)
+# for saving, rbl
 corpus.dictionary.save(os.path.join(MODELS_DIR, "mtsamples.dict"))
-gensim.corpora.MmCorpus.serialize(os.path.join(MODELS_DIR, "mtsamples.mm"),
-                                  corpus)
+gensim.corpora.MmCorpus.serialize(os.path.join(MODELS_DIR, "mtsamples.mm"), corpus)
+dictionary = gensim.corpora.Dictionary.load(os.path.join(MODELS_DIR, "mtsamples.dict"))
+corpus = gensim.corpora.MmCorpus(os.path.join(MODELS_DIR, "mtsamples.mm"))
+
+lda = gensim.models.LdaModel(corpus, id2word=dictionary, num_topics=NUM_TOPICS)
+lda.save('mh370')
+lda.print_topics(NUM_TOPICS, num_words=500)
