@@ -7,7 +7,7 @@ TEXTS_DIR = "text"
 MODELS_DIR = "."
 
 # extract topics
-NUM_TOPICS = 3
+NUM_TOPICS = 10
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
                     level=logging.INFO)
@@ -18,4 +18,4 @@ corpus = gensim.corpora.MmCorpus(os.path.join(MODELS_DIR, "mtsamples.mm"))
 
 # Project to LDA space
 lda = gensim.models.LdaModel(corpus, id2word=dictionary, num_topics=NUM_TOPICS)
-lda.print_topics(NUM_TOPICS, num_words=10)
+lda.print_topics(NUM_TOPICS, num_words=150)
