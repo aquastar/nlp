@@ -34,7 +34,6 @@ while 1:
             word_topic_weight_dict[topic_num] = word_weight_arr[0]
             word_dist_dict[word_weight_arr[1]] = word_topic_weight_dict
 
-
         topics_dict[topic_num] = topic_list
 
 f_topics_dict = open('topics_dict.pkl', 'wb')

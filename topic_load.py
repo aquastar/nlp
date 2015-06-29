@@ -3,7 +3,6 @@ import logging
 
 NUM_TOPICS = 30
 
-
 logging.basicConfig(format='%(message)s',
                     level=logging.INFO, filename='topicInfo')
 lda = gensim.models.LdaModel.load('mh370')

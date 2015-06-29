@@ -41,6 +41,7 @@ gensim.corpora.MmCorpus.serialize(os.path.join(MODELS_DIR, "mtsamples.mm"), corp
 dictionary = gensim.corpora.Dictionary.load(os.path.join(MODELS_DIR, "mtsamples.dict"))
 corpus = gensim.corpora.MmCorpus(os.path.join(MODELS_DIR, "mtsamples.mm"))
 
-lda = gensim.models.LdaModel(corpus, id2word=dictionary, num_topics=NUM_TOPICS, update_every=1, chunksize=500, passes=20)
+lda = gensim.models.LdaModel(corpus, id2word=dictionary, num_topics=NUM_TOPICS, update_every=1, chunksize=500,
+                             passes=20)
 lda.save('mh370')
 # lda.print_topics(NUM_TOPICS, num_words=500)
