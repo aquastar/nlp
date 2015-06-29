@@ -14,12 +14,12 @@ while 1:
         if not re.match(r'^topic', line, re.M | re.I):
             continue
         topic_list = []
-        single_topic_arr = line.split(' ')
+        single_topic_arr = line.strip().split(' ')
 
         topic_num = single_topic_arr[1].replace('#', '')
         for word in single_topic_arr:
             word_weight_arr = word.split('*')
-            if len(word_weight_arr) is not 2:
+            if len(word_weight_arr) is not 2 or word_weight_arr[0] is 0:
                 continue
 
             # build topic word weight
