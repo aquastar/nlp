@@ -5,7 +5,7 @@ import os
 
 base = 'text'
 str = []
-word2vec = []
+wordMatrix = []
 temp = []
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
@@ -29,7 +29,7 @@ for root, dirs, files in os.walk(base):
                 temp.append(tempsent)
                 tokens = nltk.word_tokenize(tempsent)
 
-                word2vec.append(tokens)
+                wordMatrix.append(tokens)
                 for token in tokens:
                     if token not in str:
                         str.append(token)
@@ -38,8 +38,8 @@ for index in range(len(str)):
     strsplit = str[index].strip(string.punctuation)
 
 # just save
-b = Word2Vec(word2vec)
-b.save('mh370')
+b = Word2Vec(wordMatrix)
+b.save('mh370_word2vec')
 
 exit(0)
 
